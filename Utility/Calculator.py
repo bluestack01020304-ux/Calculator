@@ -40,7 +40,8 @@ def toToken(expr: str) -> list:
 
 
 def calcul(expr: str):
-
+    """계산 함수 args: str
+    예시: '5*10+2'"""
     tokens = toToken(expr)
 
     # 숫자 변환
