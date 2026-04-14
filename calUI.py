@@ -6,6 +6,7 @@ from PyQt5.QtGui import QFont
 class Calculator(QWidget):
     def __init__(self):
         super().__init__()
+        self.calText = ''
         self.initUI()
 
     def initUI(self):
@@ -46,15 +47,21 @@ class Calculator(QWidget):
         btn = self.sender()
         text = btn.text()
 
+        if(text == "="): return
+        self.calText += text
+
         if text == 'C':
             self.display.clear()
         elif text == '=':
             # 여기는 친구가 만든 로직을 넣을 자리입니다.
+            print(self.calText)
             pass
         else:
-            self.display.setText(self.display.text() + text)
+            self.display.setText(self.calText)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Calculator()
     sys.exit(app.exec_())
+
+    
