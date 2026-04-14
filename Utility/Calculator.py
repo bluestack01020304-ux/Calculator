@@ -77,3 +77,4 @@ def calcul(expr: str):
             i += 1
 
     return tokens[0]
+print(calcul('10+5*10'))
