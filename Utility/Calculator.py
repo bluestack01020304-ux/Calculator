@@ -13,14 +13,14 @@ def mult(a: int, b: int) -> int:
     if type(a) != int or type(b) != int: raise TypeError
     return a * b
 
-def div(a: int, b: int) -> int:
+def div(a: int, b: int) -> int:  # 코드 리뷰: 리턴 타입은 int가 아님, 그리고 예외처리 더 해야함
     """a와 b를 나누는 함수"""
     if type(a) != int or type(b) != int: raise TypeError
     return a / b
 
 
 
-def toToken(expr: str) -> list:
+def toToken(expr: str) -> list:  # float 처리가 안
     tokens = []
     temp = ""
 
@@ -57,7 +57,7 @@ def calcul(expr: str):
             del tokens[i:i+2]
             i -= 1
         elif tokens[i] == "/":
-            tokens[i-1] = div(tokens[i-1], tokens[i+1])
+            tokens[i-1] = div(tokens[i-1], tokens[i+1])  # 결과 type이 달라지면 이후 줄줄이 에러가 나옴
             del tokens[i:i+2]
             i -= 1
         else:
