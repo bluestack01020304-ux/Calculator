@@ -67,7 +67,7 @@ class Calculator(QWidget):
             pass
         else:
             # 변수 없이 직접 15글자 미만일 때만 텍스트를 추가하도록 수정했습니다.
-            if len(self.calText) < 15:
+            if len(self.calText) < 12:
                 self.calText += text 
                 self.display.setText(self.calText)
 
