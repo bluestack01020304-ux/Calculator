@@ -15,10 +15,13 @@ def mult(a: int, b: int) -> int:
     if type(a) != int or type(b) != int: raise TypeError
     return a * b
 
-def div(a: int | float, b: int | float) -> int | float:
+def div(a: int | float, b: int | float) -> int | float | str:
     """a와 b를 나누는 함수"""
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
         raise TypeError
+
+    if a==0 or b==0:
+        return "0으로 나눌 수 없습니다."
 
     result = a/b
 
