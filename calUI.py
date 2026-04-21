@@ -50,21 +50,28 @@ class Calculator(QWidget):
         btn = self.sender()
         text = btn.text()
 
+        if self.plug == True:
+            self.calText = ''
+            self.display.clear()
+            self.plug = False
+
 
         if text == 'C':
             self.calText = ''
             self.display.clear()  # 화면만 지움, calText엔 "123+C"가 남아있음
+
+            self.plug = False
         elif text == '=': # 위에서 이미 처리된 상태인지 확인
             # 여기는 친구가 만든 로직을 넣을 자리입니다.
             result = cal.calcul(self.calText)
             self.display.setText(str(result))
             self.calText = str(result)
+
+            self.plug = True
             pass
         else:
-            # 글자 수 제한: 현재 입력된 글자가 max_length보다 작을 때만 추가 허용
-            if len(self.calText) < max_length:
-                self.calText += text
-                self.display.setText(self.calText)
+            self.calText += text #  clear 전에 처리해서 clear 전에 남아있음
+            self.display.setText(self.calText)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
