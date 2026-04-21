@@ -49,21 +49,21 @@ class Calculator(QWidget):
         btn = self.sender()
         text = btn.text()
 
-        if(text == "="): return
-        self.calText += text #  clear 전에 처리해서 clear 전에 남아있음
 
         if text == 'C':
+            self.calText = ''
             self.display.clear()  # 화면만 지움, calText엔 "123+C"가 남아있음
         elif text == '=': # 위에서 이미 처리된 상태인지 확인
             # 여기는 친구가 만든 로직을 넣을 자리입니다.
-            print(self.calText)
+            result = cal.calcul(self.calText)
+            self.display.setText(str(result))
+            self.calText = str(result)
             pass
         else:
+            self.calText += text #  clear 전에 처리해서 clear 전에 남아있음
             self.display.setText(self.calText)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Calculator()
     sys.exit(app.exec_())
-
-    

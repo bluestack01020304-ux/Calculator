@@ -1,3 +1,5 @@
+import math
+
 def add(a: int, b: int) -> int:
     """a와 b를 더하는 함수"""
     if type(a) != int or type(b) != int: raise TypeError
@@ -13,11 +15,17 @@ def mult(a: int, b: int) -> int:
     if type(a) != int or type(b) != int: raise TypeError
     return a * b
 
-def div(a: int, b: int) -> int:  # 코드 리뷰: 리턴 타입은 int가 아님, 그리고 예외처리 더 해야함
+def div(a: int | float, b: int | float) -> int | float:
     """a와 b를 나누는 함수"""
-    if type(a) != int or type(b) != int: raise TypeError
-    return a / b
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        raise TypeError
 
+    result = a/b
+
+    if type(result) == float:
+        result = math.ceil(result*100)/100
+
+    return result
 
 
 def toToken(expr: str) -> list:  # float 처리가 안
@@ -78,4 +86,3 @@ def calcul(expr: str):
             i += 1
 
     return tokens[0]
-print(calcul('10+5*10'))
